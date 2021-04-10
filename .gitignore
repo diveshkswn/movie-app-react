@@ -11,6 +11,8 @@
 # production
 /build
 
+
+OMDb_API.json
 # misc
 .DS_Store
 .env.local
