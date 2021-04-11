@@ -61,6 +61,10 @@ function App() {
         <MovieListHeading
           heading={searchValue.length > 0 ? searchValue : 'Movies'}
         />
+        <h6 className="m-3 text-center">
+          Developed by
+          <a href="https://diveshkswn.github.io/portfolio_"> Divesh Keswani</a>
+        </h6>
         <SearchBox
           searchValue={searchValue}
           setSearchValue={setSearchValue}

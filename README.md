@@ -1,3 +1,14 @@
+# Movie Search React App
+## 1. Using OMDB API for fetching data of movies. (https://www.omdbapi.com/)
+## 2. Used Local Storage to save favourites list in browser.
+## 3. Used Fetch API and useEffect hooks to fetch data on every search.
+## 4. Used useState Hook to change state of app and created controlled components.
+
+# Site Deployed on Netlify  : https://moviesearch-react-by-divesh.netlify.app/
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
