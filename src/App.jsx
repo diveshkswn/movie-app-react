@@ -28,14 +28,25 @@ function App() {
   }, [searchValue]); // useEffect will call getMovieRequest
   // function everytime there is a change in seachValue
 
+  useEffect(() => {
+    const movieFavouriteInLocalStorage = JSON.parse(localStorage.getItem('react-movie-app-favourites'));
+    setFavourites(movieFavouriteInLocalStorage);
+  }, []);
+
+  function saveToLocalStorage(items) {
+    localStorage.setItem('react-movie-app-favourites', JSON.stringify(items));
+  }
+
   function addFavouriteMovie(movie) {
     const newFavList = [...favourites, movie];
     setFavourites(newFavList);
+    saveToLocalStorage(newFavList);
   }
 
   function removeFavouriteMovie(movie) {
     const newFavouriteList = favourites.filter((fav) => fav.imdbID !== movie.imdbID);
     setFavourites(newFavouriteList);
+    saveToLocalStorage(newFavouriteList);
   }
 
   return (
