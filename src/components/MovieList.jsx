@@ -26,7 +26,7 @@ function MovieList(props) {
 
   return (
     <>
-      {props.movies !== undefined ? props.movies.map(populateList) : null}
+      {props.movies ? props.movies.map(populateList) : null}
 
     </>
   );

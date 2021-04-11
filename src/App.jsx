@@ -38,9 +38,15 @@ function App() {
   }
 
   function addFavouriteMovie(movie) {
-    const newFavList = [...favourites, movie];
-    setFavourites(newFavList);
-    saveToLocalStorage(newFavList);
+    if (favourites) {
+      const newFavList = [...favourites, movie];
+      setFavourites(newFavList);
+      saveToLocalStorage(newFavList);
+    } else {
+      const newFavList = [movie];
+      setFavourites(newFavList);
+      saveToLocalStorage(newFavList);
+    }
   }
 
   function removeFavouriteMovie(movie) {
@@ -70,7 +76,7 @@ function App() {
 
       <div className="row d-flex align-items-center mt-4 mb-4">
         <MovieListHeading
-          heading={favourites.length > 0 ? 'Favourites' : null}
+          heading={favourites ? 'Favourites' : null}
         />
       </div>
       <div className="row image-row">
