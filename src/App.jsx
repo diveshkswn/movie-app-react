@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable linebreak-style */
 import React, { useEffect, useState } from 'react';
-import MovieList from './components/MovieList';
+import Movie from './components/Movie';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import MovieListHeading from './components/MovieListHeading';
@@ -50,7 +50,7 @@ function App() {
         />
       </div>
       <div className="row image-row">
-        <MovieList
+        <Movie
           handleFovouritesClick={addFavouriteMovie}
           addToFavourites={AddFavourites}
           movies={movies}
@@ -63,7 +63,7 @@ function App() {
         />
       </div>
       <div className="row image-row">
-        <MovieList
+        <Movie
           handleFovouritesClick={removeFavouriteMovie}
           addToFavourites={RemoveFavouties}
           movies={favourites}

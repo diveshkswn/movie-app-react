@@ -10,23 +10,14 @@ import React from 'react';
 function MovieList(props) {
   const FavouriteComponent = props.addToFavourites;
 
-  function populateList(movie, index) {
-    return (
-      <>
-        <div className="image-container d-flex justify-content-start m-3">
-          <img src={movie.Poster} alt={index} />
-          <div onClick={() => props.handleFovouritesClick(movie)} className="overlay d-flex align-items-center justify">
-            <FavouriteComponent />
-          </div>
-        </div>
-
-      </>
-    );
-  }
-
   return (
     <>
-      {props.movies !== undefined ? props.movies.map(populateList) : null}
+      <div className="image-container d-flex justify-content-start m-3">
+        <img src={props.Poster} alt="img" />
+        <div onClick={() => props.handleFovouritesClick(props.movie)} className="overlay d-flex align-items-center justify">
+          <FavouriteComponent />
+        </div>
+      </div>
 
     </>
   );
