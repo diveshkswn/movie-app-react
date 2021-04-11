@@ -7,13 +7,16 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import MovieListHeading from './components/MovieListHeading';
 import SearchBox from './components/SearchBox';
+import AddFavourites from './components/AddFavourites';
+import RemoveFavouties from './components/RemoveFavourites';
 
 function App() {
   const [movies, setMovies] = useState([]);
-  //   const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
+  const [favourites, setFavourites] = useState([]);
 
   async function getMovieRequest() {
-    const URL = 'https://www.omdbapi.com/?s=Avengers&apikey=ae6db3a8';
+    const URL = `https://www.omdbapi.com/?s=${searchValue}&apikey=ae6db3a8`;
 
     const response = await fetch(URL);
     const responseJSON = await response.json();
@@ -22,19 +25,48 @@ function App() {
 
   useEffect(() => {
     getMovieRequest();
-  }, []);
+  }, [searchValue]); // useEffect will call getMovieRequest
+  // function everytime there is a change in seachValue
+
+  function addFavouriteMovie(movie) {
+    const newFavList = [...favourites, movie];
+    setFavourites(newFavList);
+  }
+
+  function removeFavouriteMovie(movie) {
+    const newFavouriteList = favourites.filter((fav) => fav.imdbID !== movie.imdbID);
+    setFavourites(newFavouriteList);
+  }
 
   return (
     <div className="container-fluid movie-app">
-      <div className="row">
+      <div className="row d-flex align-items-center mt-4 mb-4">
         <MovieListHeading
-          heading="IRON MAN"
+          heading={searchValue.length > 0 ? searchValue : 'Movies'}
         />
-        <SearchBox />
+        <SearchBox
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
       </div>
-      <div className="row">
+      <div className="row image-row">
         <MovieList
+          handleFovouritesClick={addFavouriteMovie}
+          addToFavourites={AddFavourites}
           movies={movies}
+        />
+      </div>
+
+      <div className="row d-flex align-items-center mt-4 mb-4">
+        <MovieListHeading
+          heading={favourites.length > 0 ? 'Favourites' : null}
+        />
+      </div>
+      <div className="row image-row">
+        <MovieList
+          handleFovouritesClick={removeFavouriteMovie}
+          addToFavourites={RemoveFavouties}
+          movies={favourites}
         />
       </div>
 
